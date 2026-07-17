@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Career Copilot{% endblock %} - AI Career Preparation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a href="/" class="brand">CareerCopilot.ai</a>
+        <div class="nav-links">
+            {% if current_user.is_authenticated %}
+                <a href="/dashboard">Dashboard</a>
+                <a href="/view_resumes">My Resumes</a>
+                <a href="/study">Study Material</a>
+                <a href="/interview">Interview Prep</a>
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+                <a href="/register" class="btn btn-primary" style="padding: 0.5rem 1rem;">Get Started</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="glass-card" style="margin-bottom: 1rem; padding: 1rem; border-color: var(--primary);">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer style="text-align: center; padding: 4rem 1rem; color: var(--text-muted); font-size: 0.9rem;">
+        <p>&copy; 2026 CareerCopilot.ai - Your Personal AI Career Assistant</p>
+    </footer>
+</body>
+</html>
