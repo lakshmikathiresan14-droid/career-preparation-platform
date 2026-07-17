@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 2rem auto;">
+    <div class="glass-card" style="margin-bottom: 2rem;">
+        <h2>Career Roadmap Generator</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Visualize your path to success. Select your career goal to see a structured roadmap.</p>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="goal">Career Goal</label>
+                <select id="goal" name="goal" required>
+                    <option value="" disabled selected>Select your target role</option>
+                    <option value="Software Developer">Software Developer</option>
+                    <option value="Data Scientist">Data Scientist</option>
+                    <option value="Product Manager">Product Manager</option>
+                    <option value="Cyber Security Analyst">Cyber Security Analyst</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Generate Roadmap</button>
+        </form>
+    </div>
+
+    {% if roadmap_data %}
+    <div class="glass-card">
+        <h3>Your Personalized Roadmap</h3>
+        <div style="margin-top: 2rem; position: relative; padding-left: 3rem; border-left: 2px dashed var(--border);">
+            {% for step in roadmap_data %}
+            <div style="position: relative; margin-bottom: 3rem;">
+                <!-- Dot -->
+                <div style="position: absolute; left: -3.65rem; top: 0; width: 1.25rem; height: 1.25rem; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary);"></div>
+                
+                <div class="glass-card" style="padding: 1.5rem; transition: none; transform: none;">
+                    <div class="badge" style="margin-bottom: 0.5rem;">Step {{ loop.index }}</div>
+                    <h4 style="color: var(--text);">{{ step }}</h4>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <div class="badge" style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 0.6rem 1.5rem;">
+                    <i class="fas fa-flag-checkered"></i> Goal Achieved!
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
