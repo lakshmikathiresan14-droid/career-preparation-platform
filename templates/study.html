@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 2rem auto;">
+    <div class="glass-card">
+        <h2>Study Material Generator</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Enter a subject (e.g., Python, Java, DBMS) to generate structured notes.</p>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="text">Subject</label>
+                <input type="text" id="text" name="text" placeholder="e.g. Python" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Generate Notes</button>
+        </form>
+
+        {% if notes %}
+        <div class="output-area">
+            <h3>Notes for your study:</h3>
+            <pre>{{ notes }}</pre>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
