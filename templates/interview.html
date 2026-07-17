@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="max-width: 900px; margin: 2rem auto;">
+    <div class="glass-card" style="margin-bottom: 2rem;">
+        <h2>Interview Preparation</h2>
+        <p style="color: var(--text-muted);">Master your next interview with these curated technical and behavioral questions.</p>
+    </div>
+
+    <div class="grid">
+        {% for category, q_list in questions.items() %}
+        <div class="glass-card">
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px;">
+                <i class="fas fa-terminal"></i> {{ category }}
+            </h3>
+            <ul style="list-style: none;">
+                {% for q in q_list %}
+                <li style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
+                    <p style="color: var(--text); font-weight: 500;">{{ q }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
